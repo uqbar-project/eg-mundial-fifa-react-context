@@ -1,5 +1,5 @@
 import React, { useContext } from 'react'
-
+import PropTypes from 'prop-types'
 import MatchRow from '../components/matchRow'
 import { Context } from '../context/Context'
 
@@ -11,4 +11,8 @@ export const Results = ({ group }) => {
             {groupMatches.map(match => <MatchRow data-testid={match.key} match={match} key={match.key} />)}
         </div>
     )
+}
+
+Results.propTypes = {
+    group: PropTypes.string
 }

@@ -6,9 +6,10 @@ import TableCell from '@material-ui/core/TableCell'
 import TableHead from '@material-ui/core/TableHead'
 import TableRow from '@material-ui/core/TableRow'
 import React, { useContext } from 'react'
+import PropTypes from 'prop-types'
 
 import { Context } from '../context/Context'
-import { GroupPosition } from '../domain/groupPosition'
+import { GroupPosition, PositionItem } from '../domain/groupPosition'
 import { CountryRow } from './countryRow'
 
 export const PositionTable = ({ group }) => {
@@ -40,6 +41,10 @@ export const PositionTable = ({ group }) => {
 
 }
 
+PositionTable.propTypes = {
+    group: PropTypes.string
+}
+
 export const PositionGroupTable = (props) => {
     return (
         <div>
@@ -63,6 +68,11 @@ export const PositionGroupTable = (props) => {
             <br />
         </div>
     )
+}
+
+PositionGroupTable.propTypes = {
+    group: PropTypes.string,
+    positions: PropTypes.array,
 }
 
 export const PositionRow = ({ value }) => {
@@ -93,4 +103,8 @@ export const PositionRow = ({ value }) => {
             </TableCell>
         </TableRow>
     )
+}
+
+PositionRow.propTypes = {
+    value: PropTypes.instanceOf(PositionItem)
 }

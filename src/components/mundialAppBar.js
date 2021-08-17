@@ -5,6 +5,7 @@ import AppBar from '@material-ui/core/AppBar'
 import Toolbar from '@material-ui/core/Toolbar'
 import FlagIcon from '@material-ui/icons/Flag'
 import EditIcon from '@material-ui/icons/Edit'
+import PropTypes from 'prop-types'
 
 class MundialAppBar extends Component {
 
@@ -25,6 +26,12 @@ class MundialAppBar extends Component {
         )
     }
 
+}
+
+MundialAppBar.propTypes = {
+    history: PropTypes.shape({
+        push: PropTypes.func.isRequired
+    }).isRequired,
 }
 
 export default withRouter(MundialAppBar)

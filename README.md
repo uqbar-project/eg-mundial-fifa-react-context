@@ -1,6 +1,6 @@
 # Mundial 2018 Rusia (React Context)
 
-[![Build Status](https://travis-ci.org/uqbar-project/eg-mundial2018-react-context.svg?branch=master)](https://travis-ci.org/uqbar-project/eg-mundial2018-react-context)
+[![Build React App](https://github.com/uqbar-project/eg-mundial2018-react-context/actions/workflows/build.yml/badge.svg?branch=master)](https://github.com/uqbar-project/eg-mundial2018-react-context/actions/workflows/build.yml) ![coverage](./badges/coverage/coverage.svg)
 
 <img src="video/demo2.gif"/>
 

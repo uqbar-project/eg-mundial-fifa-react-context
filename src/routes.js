@@ -4,7 +4,7 @@ import { CountrySearch } from './components/countrySearch'
 import Fixture from './components/fixture'
 import MundialAppBar from './components/mundialAppBar'
 
-export const MundialRoutes = () => (
+export const MundialRoutes = () => 
     <Router>
         <div>
             <MundialAppBar />
@@ -14,5 +14,5 @@ export const MundialRoutes = () => (
             </Switch>
         </div>
     </Router>
-)
+
 

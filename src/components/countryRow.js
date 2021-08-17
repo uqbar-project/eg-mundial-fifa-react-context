@@ -1,4 +1,6 @@
 import React, { Component } from 'react'
+import { Country } from '../domain/country'
+import PropTypes from 'prop-types'
 
 export class CountryRow extends Component {
 
@@ -11,4 +13,8 @@ export class CountryRow extends Component {
         )
     }
 
+}
+
+CountryRow.propTypes = {
+    country: PropTypes.instanceOf(Country)
 }

@@ -1,5 +1,5 @@
 import React, { createContext, useState } from 'react'
-
+import PropTypes from 'prop-types'
 import { MatchService } from '../services/matchService'
 
 export const Context = createContext()
@@ -19,4 +19,8 @@ export const Provider = ({ children }) => {
             {children}
         </Context.Provider>
     )
+}
+
+Provider.propTypes = {
+    children: PropTypes.node.isRequired,
 }
