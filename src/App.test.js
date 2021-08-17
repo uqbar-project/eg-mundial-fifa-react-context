@@ -1,10 +1,13 @@
 import { fireEvent, render, screen, within } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 import React from 'react'
+import App from './App'
+import MundialAppBar from './components/mundialAppBar'
 
 import { CountrySearch } from './components/countrySearch'
 import { Results } from './components/results'
 import { Provider } from './context/Context'
+import { BrowserRouter, withRouter } from 'react-router-dom'
 
 it('buscar F devuelve la lista con un solo país, Francia', async () => {
   const { getByTestId } = render(<CountrySearch />)
@@ -35,4 +38,14 @@ it('results show Russia made 5 goals against Saudi Arabia', () => {
   )
   const golesRussia = getByTestId('russia_saudi-arabia_russia_goles')
   expect(golesRussia).toHaveValue(5)
+})
+
+it('has a smoke test for App', () => {
+  const { getByTestId } = render(<Provider><App/></Provider>)
+  expect(getByTestId('app')).toBeInTheDocument()
+})
+
+it('AppBar has two routes', () => {
+  const { getAllByRole } = render(<BrowserRouter><MundialAppBar/></BrowserRouter>)
+  expect(getAllByRole('button').length).toBe(2)
 })

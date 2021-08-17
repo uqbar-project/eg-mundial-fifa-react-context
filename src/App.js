@@ -12,7 +12,7 @@ class App extends Component {
     return (
       <Provider>
         <BrowserRouter>
-          <div className="App">
+          <div className="App" data-testid="app">
             <header className="App-header">
               <img src={logo} className="App-logo" alt="logo" />
             </header>
