@@ -1,13 +1,13 @@
 import { fireEvent, render, screen, within } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 import React from 'react'
+import { BrowserRouter } from 'react-router-dom'
 import App from './App'
-import MundialAppBar from './components/mundialAppBar'
-
 import { CountrySearch } from './components/countrySearch'
+import MundialAppBar from './components/mundialAppBar'
 import { Results } from './components/results'
 import { Provider } from './context/Context'
-import { BrowserRouter, withRouter } from 'react-router-dom'
+
 
 it('buscar F devuelve la lista con un solo país, Francia', async () => {
   const { getByTestId } = render(<CountrySearch />)
