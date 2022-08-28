@@ -1,7 +1,7 @@
 import React from 'react'
-import MenuItem from '@material-ui/core/MenuItem'
-import Select from '@material-ui/core/Select'
-import FormHelperText from '@material-ui/core/FormHelperText'
+import MenuItem from '@mui/material/MenuItem'
+import Select from '@mui/material/Select'
+import FormHelperText from '@mui/material/FormHelperText'
 import PropTypes from 'prop-types'
 
 export const SelectGroup = ({ value, onChange, groups }) => {

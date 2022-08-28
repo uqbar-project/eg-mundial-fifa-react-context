@@ -1,6 +1,6 @@
-import Card from '@material-ui/core/Card'
-import CardContent from '@material-ui/core/CardContent'
-import Grid from '@material-ui/core/Grid'
+import Card from '@mui/material/Card'
+import CardContent from '@mui/material/CardContent'
+import Grid from '@mui/material/Grid'
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { CountryRow } from './countryRow'
@@ -12,7 +12,7 @@ export class CountryList extends Component {
             <Grid item xs={2} key={'grid' + country.name}>
                 <Card key={'card' + country.name}>
                     <CardContent key={'content' + country.name}>
-                        <CountryRow country={country} key={country.name} />
+                        <CountryRow country={country} key={country.name} testId="countryRow" />
                     </CardContent>
                 </Card>
             </Grid>

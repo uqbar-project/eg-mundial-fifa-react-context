@@ -1,7 +1,7 @@
-import Card from '@material-ui/core/Card'
-import CardContent from '@material-ui/core/CardContent'
-import Grid from '@material-ui/core/Grid'
-import TextField from '@material-ui/core/TextField'
+import Card from '@mui/material/Card'
+import CardContent from '@mui/material/CardContent'
+import Grid from '@mui/material/Grid'
+import TextField from '@mui/material/TextField'
 import React, { useContext } from 'react'
 import PropTypes from 'prop-types'
 
@@ -40,7 +40,7 @@ const MatchTeam = ({ match, team, goal, changeGoal }) => {
     return (
         <>
             <Grid item xs={9} sm={4}>
-                <CountryRow country={team} />
+                <CountryRow country={team} testId="countryRow"/>
             </Grid>
             <Grid item xs={3} sm={2}>
                 <TextField
@@ -48,6 +48,7 @@ const MatchTeam = ({ match, team, goal, changeGoal }) => {
                     inputProps={{ 'data-testid': `${match.key}_${team.key}_goles` }}
                     type="number"
                     className="goles"
+                    variant="standard"
                     value={goal}
                     onChange={(event) => changeGoal(team, event.target.value)}
                     margin="normal"

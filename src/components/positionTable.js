@@ -1,10 +1,10 @@
-import Card from '@material-ui/core/Card'
-import CardContent from '@material-ui/core/CardContent'
-import Table from '@material-ui/core/Table'
-import TableBody from '@material-ui/core/TableBody'
-import TableCell from '@material-ui/core/TableCell'
-import TableHead from '@material-ui/core/TableHead'
-import TableRow from '@material-ui/core/TableRow'
+import Card from '@mui/material/Card'
+import CardContent from '@mui/material/CardContent'
+import Table from '@mui/material/Table'
+import TableBody from '@mui/material/TableBody'
+import TableCell from '@mui/material/TableCell'
+import TableHead from '@mui/material/TableHead'
+import TableRow from '@mui/material/TableRow'
 import React, { useContext } from 'react'
 import PropTypes from 'prop-types'
 
@@ -62,7 +62,7 @@ export const PositionGroupTable = (props) => {
                     </TableRow>
                 </TableHead>
                 <TableBody>
-                    {props.positions.map((item) => <PositionRow value={item} key={item.key} />)}
+                    {props.positions.map((item, index) => <PositionRow value={item} key={item.key} index={index} group={props.group}/>)}
                 </TableBody>
             </Table>
             <br />
@@ -75,11 +75,12 @@ PositionGroupTable.propTypes = {
     positions: PropTypes.array,
 }
 
-export const PositionRow = ({ value }) => {
+export const PositionRow = ({ value, index, group }) => {
+    const testId = group + '-' + index
     return (
-        <TableRow>
+        <TableRow >
             <TableCell>
-                <CountryRow country={value.team} />
+                <CountryRow country={value.team} testId={testId}/>
             </TableCell>
             <TableCell>
                 {value.won}

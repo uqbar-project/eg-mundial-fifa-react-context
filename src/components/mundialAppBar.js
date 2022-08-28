@@ -1,23 +1,24 @@
 import React, { Component } from 'react'
-import { withRouter } from 'react-router-dom'
-import Button from '@material-ui/core/Button'
-import AppBar from '@material-ui/core/AppBar'
-import Toolbar from '@material-ui/core/Toolbar'
-import FlagIcon from '@material-ui/icons/Flag'
-import EditIcon from '@material-ui/icons/Edit'
+import Button from '@mui/material/Button'
+import AppBar from '@mui/material/AppBar'
+import Toolbar from '@mui/material/Toolbar'
+import FlagIcon from '@mui/icons-material/Flag'
+import EditIcon from '@mui/icons-material/Edit'
 import PropTypes from 'prop-types'
+import { withRouter } from '../utils/withRouter'
 
 class MundialAppBar extends Component {
-
     render() {
+        const navigate = this.props.navigate
+
         return (
             <AppBar position="static" color='default'>
                 <Toolbar>
-                    <Button onClick={() => this.props.history.push('/')}>
+                    <Button onClick={() => navigate('/')}>
                         <FlagIcon />
                         Buscar países
                         </Button>
-                    <Button onClick={() => this.props.history.push('/fixture')}>
+                    <Button onClick={() => navigate('/fixture')}>
                         <EditIcon />
                         ¡Cargá los resultados y mirá las posiciones!
                         </Button>
@@ -29,9 +30,7 @@ class MundialAppBar extends Component {
 }
 
 MundialAppBar.propTypes = {
-    history: PropTypes.shape({
-        push: PropTypes.func.isRequired
-    }).isRequired,
+    navigate: PropTypes.func,
 }
 
 export default withRouter(MundialAppBar)

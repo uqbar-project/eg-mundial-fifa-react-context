@@ -10,8 +10,8 @@ import { Provider } from './context/Context'
 
 
 it('buscar F devuelve la lista con un solo país, Francia', async () => {
-  const { getByTestId } = render(<CountrySearch />)
-  const countrySearch = getByTestId('country')
+  render(<CountrySearch />)
+  const countrySearch = screen.getByTestId('country')
   // bajo nivel fireEvent.change(countrySearch, { target: { value: 'F' }})
   // alto nivel
   userEvent.type(countrySearch, 'F')
@@ -20,9 +20,9 @@ it('buscar F devuelve la lista con un solo país, Francia', async () => {
 })
 
 it('buscar el grupo A devuelve los países que particpan en él', async () => {
-  const { getByRole } = render(<CountrySearch />)
-  fireEvent.mouseDown(getByRole('button'))
-  const listbox = within(getByRole('listbox'))
+  render(<CountrySearch />)
+  fireEvent.mouseDown(screen.getByRole('button'))
+  const listbox = within(screen.getByRole('listbox'))
   fireEvent.click(listbox.getByText(/A/i))
   const allCountries = await screen.findAllByTestId('countryRow')
   expect(allCountries.length).toBe(4)
@@ -31,21 +31,21 @@ it('buscar el grupo A devuelve los países que particpan en él', async () => {
 })
 
 it('results show Russia made 5 goals against Saudi Arabia', () => {
-  const { getByTestId } = render(
+  render(
     <Provider>
       <Results />
     </Provider >
   )
-  const golesRussia = getByTestId('russia_saudi-arabia_russia_goles')
+  const golesRussia = screen.getByTestId('russia_saudi-arabia_russia_goles')
   expect(golesRussia).toHaveValue(5)
 })
 
 it('has a smoke test for App', () => {
-  const { getByTestId } = render(<Provider><App/></Provider>)
-  expect(getByTestId('app')).toBeInTheDocument()
+  render(<Provider><App/></Provider>)
+  expect(screen.getByTestId('app')).toBeInTheDocument()
 })
 
 it('AppBar has two routes', () => {
-  const { getAllByRole } = render(<BrowserRouter><MundialAppBar/></BrowserRouter>)
-  expect(getAllByRole('button').length).toBe(2)
+  render(<BrowserRouter><MundialAppBar/></BrowserRouter>)
+  expect(screen.getAllByRole('button').length).toBe(2)
 })

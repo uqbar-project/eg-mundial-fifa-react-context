@@ -1,5 +1,5 @@
-import { FormControl } from '@material-ui/core'
-import Grid from '@material-ui/core/Grid'
+import { FormControl } from '@mui/material'
+import Grid from '@mui/material/Grid'
 import React, { useState } from 'react'
 
 import { countryService } from '../services/countryService'
