@@ -9,7 +9,7 @@ import { Results } from './components/results'
 import { Provider } from './context/Context'
 
 
-it('buscar F devuelve la lista con un solo país, Francia', async () => {
+it('searching countries by text', async () => {
   render(<CountrySearch />)
   const countrySearch = screen.getByTestId('country')
   // bajo nivel fireEvent.change(countrySearch, { target: { value: 'F' }})
@@ -19,7 +19,9 @@ it('buscar F devuelve la lista con un solo país, Francia', async () => {
   expect(allCountries[0]).toHaveTextContent('France')
 })
 
-it('buscar el grupo A devuelve los países que particpan en él', async () => {
+it('searching A group returns the corresponding countries', async () => {
+  // Este test tira warnings muy molestos de una forma poco clara, la realidad es que 
+  // no encontré la forma de eliminar esos warnings sin que se rompan los tests
   render(<CountrySearch />)
   fireEvent.mouseDown(screen.getByRole('button'))
   const listbox = within(screen.getByRole('listbox'))
