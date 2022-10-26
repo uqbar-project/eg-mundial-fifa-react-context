@@ -4,7 +4,7 @@ import React, { Component } from 'react'
 import { BrowserRouter } from 'react-router-dom'
 
 import { Provider } from './context/Context'
-import logo from './images/logoRussia.png'
+import logo from './images/logoQatar.png'
 import { MundialRoutes } from './routes'
 
 class App extends Component {

@@ -9,7 +9,7 @@ export class Country {
     }
 
     get key() {
-        return this.name.replace(' ', '-').toLowerCase()
+        return this.name.replaceAll(' ', '-').toLowerCase()
     }
 
     /** Funciones auxiliares para búsquedas */

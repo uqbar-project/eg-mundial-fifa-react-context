@@ -1,38 +1,38 @@
 import { Country } from '../domain/country'
 
 const countries = [
-    new Country('Argentina', 'D'),
-    new Country('Australia', 'C'),
-    new Country('Belgium', 'G'),
-    new Country('Brazil', 'E'),
-    new Country('Costa Rica', 'E'),
-    new Country('Colombia', 'H'),
-    new Country('Croatia', 'D'),
-    new Country('Denmark', 'C'),
-    new Country('Egypt', 'A'),
-    new Country('England', 'G'),
-    new Country('France', 'C'),
-    new Country('Germany', 'F'),
-    new Country('Iceland', 'D'),
-    new Country('Iran', 'B'),
-    new Country('Japan', 'H'),
-    new Country('South Korea', 'F'),
-    new Country('Mexico', 'F'),
-    new Country('Morocco', 'B'),
-    new Country('Nigeria', 'D'),
-    new Country('Panama', 'G'),
-    new Country('Peru', 'C'),
-    new Country('Poland', 'H'),
-    new Country('Portugal', 'B'),
-    new Country('Russia', 'A'),
-    new Country('Saudi Arabia', 'A'),
-    new Country('Senegal', 'H'),
-    new Country('Serbia', 'E'),
-    new Country('Spain', 'B'),
-    new Country('Sweden', 'F'),
-    new Country('Switzerland', 'E'),
-    new Country('Tunisia', 'G'),
-    new Country('Uruguay', 'A')
+  new Country('Alemania', 'E'),
+  new Country('Arabia Saudita', 'C'),
+  new Country('Argentina', 'C'),
+  new Country('Australia', 'D'),
+  new Country('Brasil', 'G'),
+  new Country('Bélgica', 'F'),
+  new Country('Camerún', 'G'),
+  new Country('Canadá', 'F'),
+  new Country('Corea del Sur', 'G'),
+  new Country('Costa Rica', 'E'),
+  new Country('Croacia', 'F'),
+  new Country('Dinamarca', 'D'),
+  new Country('Ecuador', 'A'),
+  new Country('España', 'E'),
+  new Country('Estados Unidos', 'B'),
+  new Country('Francia', 'D'),
+  new Country('Gales', 'B'),
+  new Country('Ghana', 'G'),
+  new Country('Inglaterra', 'B'),
+  new Country('Irán', 'B'),
+  new Country('Japón', 'E'),
+  new Country('Marruecos', 'F'),
+  new Country('México', 'C'),
+  new Country('Países Bajos', 'A'),
+  new Country('Polonia', 'C'),
+  new Country('Portugal', 'G'),
+  new Country('Qatar', 'A'),
+  new Country('Senegal', 'A'),
+  new Country('Serbia', 'G'),
+  new Country('Suiza', 'G'),
+  new Country('Túnez', 'D'),
+  new Country('Uruguay', 'G'),
 ]
 
 class CountryService {
@@ -44,7 +44,9 @@ class CountryService {
     }
 
     getCountry(name) {
-        return countries.find(country => country.name.toLowerCase() === name.toLowerCase())
+        const country = countries.find(country => country.name.toLowerCase() === name.toLowerCase())
+        if (!country) throw new Error(`Equipo ${name} no encontrado`)
+        return country
     }
 
     getGroups() {
