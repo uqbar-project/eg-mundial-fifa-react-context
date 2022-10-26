@@ -3,13 +3,11 @@ import FlagIcon from '@mui/icons-material/Flag'
 import AppBar from '@mui/material/AppBar'
 import Button from '@mui/material/Button'
 import Toolbar from '@mui/material/Toolbar'
-import PropTypes from 'prop-types'
 import React from 'react'
+import { useNavigate } from 'react-router-dom'
 
-import { withRouter } from '../utils/withRouter'
-
-const MundialAppBar = ({ props }) => {
-    const navigate = props.navigate
+export const MundialAppBar = () => {
+    const navigate = useNavigate()
 
     return (
         <AppBar position="static" color='default'>
@@ -26,9 +24,3 @@ const MundialAppBar = ({ props }) => {
         </AppBar>
     )
 }
-
-MundialAppBar.propTypes = {
-    navigate: PropTypes.func,
-}
-
-export default withRouter(MundialAppBar)

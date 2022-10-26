@@ -1,6 +1,6 @@
-# Mundial 2018 Rusia (React Context)
+# Mundial FIFA (React Context)
 
-[![Build React App](https://github.com/uqbar-project/eg-mundial2018-react-context/actions/workflows/build.yml/badge.svg?branch=master)](https://github.com/uqbar-project/eg-mundial2018-react-context/actions/workflows/build.yml) ![coverage](./badges/coverage/coverage.svg)
+[![Build React App](https://github.com/uqbar-project/eg-mundial-fifa-react-context/actions/workflows/build.yml/badge.svg?branch=master)](https://github.com/uqbar-project/eg-mundial-fifa-react-context/actions/workflows/build.yml) ![coverage](./badges/coverage/coverage.svg)
 
 <img src="video/demo2.gif"/>
 

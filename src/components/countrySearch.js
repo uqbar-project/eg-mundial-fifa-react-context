@@ -20,7 +20,7 @@ export const CountrySearch = (props) => {
     }
 
     fetchGroups()
-  })
+  }, [])
 
   useEffect(() => {
     const searchCountries = () => {
@@ -31,9 +31,9 @@ export const CountrySearch = (props) => {
   }, [search])
 
   const handleChange = (value, property) => {
-    const delta = {}
+    const delta = search
     delta[property] = value
-    const newSearch = Object.assign(search, delta)
+    const newSearch = Object.assign(new Country(), delta)
     setSearch(newSearch)
   }
 

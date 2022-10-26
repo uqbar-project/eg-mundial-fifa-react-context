@@ -20,8 +20,8 @@ export class MatchService {
 export const matchService = new MatchService()
 
 const matches = [
-    MatchService.build('Qatar', 'Ecuador'),
-    MatchService.build('Senegal', 'Países Bajos'),
+    MatchService.build('Qatar', 'Ecuador', 1, 3),
+    MatchService.build('Senegal', 'Países Bajos', 2, 1),
     MatchService.build('Qatar', 'Senegal'),
     MatchService.build('Países Bajos', 'Ecuador'),
     MatchService.build('Ecuador', 'Senegal'),

@@ -12,10 +12,10 @@ describe("position table", () => {
         <PositionTable />
       </Provider >
     )
-    expect(screen.getByTestId('A-0')).toHaveTextContent('Russia')
-    expect(screen.getByTestId('A-1')).toHaveTextContent('Uruguay')
-    expect(screen.getByTestId('A-2')).toHaveTextContent('Egypt')
-    expect(screen.getByTestId('A-3')).toHaveTextContent('Saudi Arabia')
+    expect(screen.getByTestId('A-0')).toHaveTextContent('Ecuador')
+    expect(screen.getByTestId('A-1')).toHaveTextContent('Senegal')
+    expect(screen.getByTestId('A-2')).toHaveTextContent('Países Bajos')
+    expect(screen.getByTestId('A-3')).toHaveTextContent('Qatar')
   })
 
   it('changing score of Russia changes the position table accordingly', async () => {
@@ -24,11 +24,11 @@ describe("position table", () => {
         <Fixture />
       </Provider >
     )
-    const golesRussia = screen.getByTestId('russia_saudi-arabia_russia_goles')
+    const golesRussia = screen.getByTestId('qatar_ecuador_ecuador_goles')
     userEvent.type(golesRussia, "{backspace}0")
-    expect(screen.getByTestId('A-0')).toHaveTextContent('Uruguay')
-    expect(screen.getByTestId('A-1')).toHaveTextContent('Russia')
-    expect(screen.getByTestId('A-2')).toHaveTextContent('Saudi Arabia')
-    expect(screen.getByTestId('A-3')).toHaveTextContent('Egypt')
+    expect(screen.getByTestId('A-0')).toHaveTextContent('Senegal')
+    expect(screen.getByTestId('A-1')).toHaveTextContent('Qatar')
+    expect(screen.getByTestId('A-2')).toHaveTextContent('Países Bajos')
+    expect(screen.getByTestId('A-3')).toHaveTextContent('Ecuador')
   })
 })

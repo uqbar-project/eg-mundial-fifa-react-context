@@ -2,7 +2,7 @@ import React from 'react'
 import { Route, Routes, } from 'react-router-dom'
 import { CountrySearch } from './components/countrySearch'
 import Fixture from './components/fixture'
-import MundialAppBar from './components/mundialAppBar'
+import { MundialAppBar } from './components/mundialAppBar'
 
 export const MundialRoutes = () => 
     <div>

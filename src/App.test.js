@@ -4,7 +4,7 @@ import React from 'react'
 import { BrowserRouter } from 'react-router-dom'
 import App from './App'
 import { CountrySearch } from './components/countrySearch'
-import MundialAppBar from './components/mundialAppBar'
+import { MundialAppBar } from './components/mundialAppBar'
 import { Results } from './components/results'
 import { Provider } from './context/Context'
 
@@ -16,7 +16,7 @@ it('searching countries by text', async () => {
   // alto nivel
   userEvent.type(countrySearch, 'F')
   const allCountries = await screen.findAllByTestId('countryRow')
-  expect(allCountries[0]).toHaveTextContent('France')
+  expect(allCountries[0]).toHaveTextContent('Francia')
 })
 
 it('searching A group returns the corresponding countries', async () => {
@@ -29,17 +29,17 @@ it('searching A group returns the corresponding countries', async () => {
   const allCountries = await screen.findAllByTestId('countryRow')
   expect(allCountries.length).toBe(4)
   const groupACountries = allCountries.map(country => country.textContent).sort((a, b) => a >= b)
-  expect(groupACountries).toStrictEqual(['Egypt', 'Russia', 'Saudi Arabia', 'Uruguay'])
+  expect(groupACountries).toStrictEqual(['Ecuador', 'Países Bajos', 'Qatar', 'Senegal'])
 })
 
-it('results show Russia made 5 goals against Saudi Arabia', () => {
+it('results show how many goals scored one of the teams', () => {
   render(
     <Provider>
       <Results />
     </Provider >
   )
-  const golesRussia = screen.getByTestId('russia_saudi-arabia_russia_goles')
-  expect(golesRussia).toHaveValue(5)
+  const goalsHomeTeam = screen.getByTestId('qatar_ecuador_qatar_goles')
+  expect(goalsHomeTeam).toHaveValue(1)
 })
 
 it('has a smoke test for App', () => {
