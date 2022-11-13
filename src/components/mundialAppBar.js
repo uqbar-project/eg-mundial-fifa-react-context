@@ -12,14 +12,18 @@ export const MundialAppBar = () => {
     return (
         <AppBar position="static" color='default'>
             <Toolbar>
-                <Button onClick={() => navigate('/')}>
+                <Button className="iconButton" onClick={() => navigate('/')}>
                     <FlagIcon />
-                    Buscar países
-                    </Button>
-                <Button onClick={() => navigate('/fixture')}>
+                    <span>
+                        Buscar países
+                    </span>
+                </Button>
+                <Button className='iconButton' onClick={() => navigate('/fixture')}>
                     <EditIcon />
-                    ¡Cargá los resultados y mirá las posiciones!
-                    </Button>
+                    <span>
+                        ¡Cargá los resultados y mirá las posiciones!
+                    </span>
+                </Button>
             </Toolbar>
         </AppBar>
     )
