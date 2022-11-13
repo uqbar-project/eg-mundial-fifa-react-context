@@ -40,12 +40,8 @@
   bottom: 1rem;
 }
 
-.iconButton {
-  display: flex;
-  gap: 4px;
-}
-
-.iconButton > span {
+.iconButton > label {
+  cursor: pointer;
   text-align: left;
   font-size: clamp(0.6rem, 0.2rem + 2vw, 0.875rem);
 }
