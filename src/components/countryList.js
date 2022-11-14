@@ -9,8 +9,8 @@ import { CountryRow } from './countryRow'
 export const CountryList = ({ countries }) => {
 
     const countryList = countries.map(country =>
-        <Grid item xs={2} key={'grid' + country.name}>
-            <Card key={'card' + country.name}>
+        <Grid item xs={12} sm={6} md={4} lg={3} xl={2} key={'grid' + country.name}>
+            <Card className='countryRowContainer' key={'card' + country.name}>
                 <CardContent key={'content' + country.name}>
                     <CountryRow country={country} key={country.name} testId="countryRow" />
                 </CardContent>

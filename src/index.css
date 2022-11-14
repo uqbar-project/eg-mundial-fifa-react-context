@@ -4,6 +4,10 @@ body {
   font-family: 'Roboto', 'PT Sans', 'Titillium Web', sans-serif !important;
 }
 
+* {
+  box-sizing: border-box;
+}
+
 .heading {
   font-weight: 500;
 }
@@ -15,10 +19,10 @@ body {
 .search {
   padding: 2rem;
   width: 100%;
+  margin: 2rem 0;
 }
 
 .formControl {
   width: 25rem;
   min-width: 25rem;
-  margin: 2rem 0 !important;
 }

@@ -27,7 +27,7 @@ export const PositionTable = ({ group }) => {
 
     return (
         <Card key={'cardPosiciones'}>
-            <CardContent key={'contentPosiciones'}>
+            <CardContent className='cardPosicionesContent' key={'contentPosiciones'}>
                 <h3>Tabla de posiciones</h3>
                 {[...positions].map((itemGroup) => {
                     const group = itemGroup[0]
@@ -49,16 +49,16 @@ export const PositionGroupTable = (props) => {
     return (
         <div>
             <h4>Grupo {props.group}</h4>
-            <Table style={{ width: "auto", tableLayout: "auto" }}>
+            <Table className='positionGroupTable'>
                 <TableHead>
                     <TableRow>
-                        <TableCell>Equipo&nbsp;Participante&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TableCell>
+                        <TableCell>Equipo</TableCell>
                         <TableCell>G</TableCell>
                         <TableCell>E</TableCell>
                         <TableCell>P</TableCell>
                         <TableCell>GF</TableCell>
                         <TableCell>GC</TableCell>
-                        <TableCell>Puntos</TableCell>
+                        <TableCell>Pts</TableCell>
                     </TableRow>
                 </TableHead>
                 <TableBody>

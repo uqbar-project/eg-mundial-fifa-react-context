@@ -18,18 +18,20 @@ const Fixture = () => {
 
     return (
         <div>
-            <FormControl className="formControl">
-                <SelectGroup
-                    value={group}
-                    onChange={filterGroup}
-                    groups={groups}
-                />
-            </FormControl>
+            <div className="search">
+                <FormControl className="formControl">
+                    <SelectGroup
+                        value={group}
+                        onChange={filterGroup}
+                        groups={groups}
+                    />
+                </FormControl>
+            </div>
             <Grid container spacing={0}>
-                <Grid item xs={7}>
+                <Grid item xs={12} sm={12} md={7} xl={7}>
                     <Results group={group} />
                 </Grid>
-                <Grid item xs={5}>
+                <Grid item xs={12} sm={12} md={5} xl={5}>
                     <PositionTable group={group} />
                 </Grid>
             </Grid>

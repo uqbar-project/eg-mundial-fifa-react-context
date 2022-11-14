@@ -12,6 +12,7 @@ export const SelectGroup = ({ value, onChange, groups }) => {
             value={value}
             onChange={onChange}
             inputProps={{
+                MenuProps: { disableScrollLock: true },
                 name: 'group',
                 id: 'group'
             }}
