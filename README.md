@@ -2,7 +2,7 @@
 
 [![Build React App](https://github.com/uqbar-project/eg-mundial-fifa-react-context/actions/workflows/build.yml/badge.svg?branch=master)](https://github.com/uqbar-project/eg-mundial-fifa-react-context/actions/workflows/build.yml) ![coverage](./badges/coverage/coverage.svg)
 
-<img src="video/demo2.gif"/>
+<img src="video/demo.gif"/>
 
 La aplicación permite la reutilización de varios componentes:
 
@@ -154,7 +154,7 @@ export const Provider = ({ children }) => {
 Mediante los [hooks](https://es.reactjs.org/docs/hooks-intro.html)
 
 - `useState` mantenemos el estado del contexto, que son los partidos disputados
-- `value` nos ofrece un mecanismo para mutar ese estado cada vez que nos pasen el partido a actualizar. Simplemente lo que hacemos es buscarlo en la lista de partidos, pisar el resultado del partido con el nuevo (ej. en lugar de Argentina 0, Croacia 3 podríamos decirle Argentina 3, Croacia 2) y luego debemos llamar al setMatches para que se propague ese cambio a cada uno de los hijos (en nuestro caso los que lo deben tomar son el de carga de partidos, para ver el input cambiado y la tabla de posiciones que se recalcula en base a los partidos)
+- `value` nos ofrece un mecanismo para mutar ese estado cada vez que nos pasen el partido a actualizar. Simplemente lo que hacemos es buscarlo en la lista de partidos, pisar el resultado del partido con el nuevo (ej. en lugar de Polonia 0 Arabia Saudita 0 podríamos decirle Polonia 1 Arabia Saudita 0) y luego debemos llamar al setMatches para que se propague ese cambio a cada uno de los hijos (en nuestro caso los que lo deben tomar son el de carga de partidos, para ver el input cambiado y la tabla de posiciones que se recalcula en base a los partidos)
 
 Para más información hay una [web](https://wattenberger.com/blog/react-hooks) que tiene una explicación de como migrar a hooks.
 
@@ -172,19 +172,15 @@ export const Results = ({ group }) => {
 }
 ```
 
-Podemos ver un `<>` suelto, eso no se parece a ningún elemento a HTML, porque es un `Fragment`, la expresión JSX equivalente al Null Pattern de un componente. Los [fragments](https://reactjs.org/docs/fragments.html) surgen a partir de que un componente de react está obligado a devolver sí o sí un solo elemento (div, span, p, etc). Entonces si nosotros quisiéramos devolver 2 o más elementos sin tener un contenedor, porque arruina nuestros estilos, podemos usar fragment que es un tag vacío que cuando se renderiza en la web va a desaparecer.
-
 Y nuestro componente `MatchRow` ahora utiliza la función `updateMatch` del contexto para actualizar el partido y que el cambio se vea reflejado en la tabla de posiciones
 
 ```js
-export const MatchRow = ({ match: matchProps }) => {
+const MatchRow = ({ match }) => {
     const { updateMatch } = useContext(Context)
-    const [match, setMatch] = useState(matchProps)
 
-    const changeGoal = (match, team, goals) => {
+    const changeGoal = (team, goals) => {
         match.updateScore(team.name, Math.trunc(goals))
         updateMatch(match)
-        setMatch(match)
     }
     ...
 ```
@@ -197,23 +193,25 @@ Tenemos tres test bastante integrales, los dos primeros nos sirven para probar l
 - por grupo
 
 ```js
-it('buscar F devuelve la lista con un solo país, Francia', async () => {
-  const { getByTestId } = render(<CountrySearch />)
-  const countrySearch = getByTestId('country')
+it('searching countries by text', async () => {
+  render(<CountrySearch />)
+  const countrySearch = screen.getByTestId('country')
+  // bajo nivel fireEvent.change(countrySearch, { target: { value: 'F' }})
+  // alto nivel
   userEvent.type(countrySearch, 'F')
   const allCountries = await screen.findAllByTestId('countryRow')
-  expect(allCountries[0]).toHaveTextContent('France')
+  expect(allCountries[0]).toHaveTextContent('Francia')
 })
 
-it('buscar el grupo A devuelve los países que particpan en él', async () => {
-  const { getByRole } = render(<CountrySearch />)
-  fireEvent.mouseDown(getByRole('button'))
-  const listbox = within(getByRole('listbox'))
+it('searching A group returns the corresponding countries', async () => {
+  render(<CountrySearch />)
+  fireEvent.mouseDown(screen.getByRole('button'))
+  const listbox = within(screen.getByRole('listbox'))
   fireEvent.click(listbox.getByText(/A/i))
   const allCountries = await screen.findAllByTestId('countryRow')
   expect(allCountries.length).toBe(4)
   const groupACountries = allCountries.map(country => country.textContent).sort((a, b) => a >= b)
-  expect(groupACountries).toStrictEqual(['Egypt', 'Russia', 'Saudi Arabia', 'Uruguay'])
+  expect(groupACountries).toStrictEqual(['Ecuador', 'Países Bajos', 'Qatar', 'Senegal'])
 })
 ```
 
@@ -228,21 +226,21 @@ Algunos trucos que utilizamos:
 
 Por último el test que verifica la carga de un resultado requiere ser específico respecto al data-testid que queremos, por eso cada input debe considerar
 
-- el partido: `russia_saudi-arabia`
-- el equipo que se está cargando: `russia`
+- el partido: Qatar vs. Ecuador `qatar_ecuador`
+- el equipo que se está cargando: `qatar`
 - y algún identificador de qué input es: `goles`
 
 eso nos permite accederlo rápidamente
 
 ```js
-it('results show Russia made 5 goals against Saudi Arabia', async () => {
-  const { getByTestId } = render(
+it('results show how many goals scored one of the teams', () => {
+  render(
     <Provider>
       <Results />
     </Provider >
   )
-  const golesRussia = getByTestId('russia_saudi-arabia_russia_goles')
-  expect(golesRussia).toHaveValue(5)
+  const goalsHomeTeam = screen.getByTestId('qatar_ecuador_qatar_goles')
+  expect(goalsHomeTeam).toHaveValue(1)
 })
 ```
 
