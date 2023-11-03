@@ -1,6 +1,6 @@
 import { FormControl } from '@mui/material'
 import Grid from '@mui/material/Grid'
-import React, { useState } from 'react'
+import { useState } from 'react'
 
 import { countryService } from '../services/countryService'
 import { PositionTable } from './positionTable'

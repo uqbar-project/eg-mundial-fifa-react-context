@@ -1,10 +1,9 @@
-import React from 'react'
 import MenuItem from '@mui/material/MenuItem'
 import Select from '@mui/material/Select'
 import FormHelperText from '@mui/material/FormHelperText'
 import PropTypes from 'prop-types'
 
-export const SelectGroup = ({ value, onChange, groups }) => {
+export const SelectGroup = ({ value, onChange, groups, inputProps }) => {
     return <>
         <FormHelperText>Grupo</FormHelperText>
         <Select
@@ -12,9 +11,9 @@ export const SelectGroup = ({ value, onChange, groups }) => {
             value={value}
             onChange={onChange}
             inputProps={{
-                MenuProps: { disableScrollLock: true },
+                ...inputProps,
                 name: 'group',
-                id: 'group'
+                id: 'group',
             }}
         >
             <MenuItem value="">
@@ -28,5 +27,6 @@ export const SelectGroup = ({ value, onChange, groups }) => {
 SelectGroup.propTypes = {
     value: PropTypes.string,
     onChange: PropTypes.func.isRequired,
-    groups: PropTypes.array
+    groups: PropTypes.array,
+    inputProps: PropTypes.object,
 }

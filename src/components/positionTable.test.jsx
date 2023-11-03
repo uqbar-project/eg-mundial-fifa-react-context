@@ -1,6 +1,5 @@
 import { render, screen } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
-import React from 'react'
 import { Provider } from '../context/Context'
 import { PositionTable } from './positionTable'
 import Fixture from './fixture'
@@ -18,14 +17,14 @@ describe("position table", () => {
     expect(screen.getByTestId('A-3')).toHaveTextContent('Qatar')
   })
 
-  it('changing score of Russia changes the position table accordingly', async () => {
+  it('changing score of a team changes the position table accordingly', async () => {
     render(
       <Provider>
         <Fixture />
       </Provider >
     )
-    const golesRussia = screen.getByTestId('qatar_ecuador_ecuador_goles')
-    userEvent.type(golesRussia, "{backspace}0")
+    const ecuador_goals = screen.getByTestId('qatar_ecuador_ecuador_goles')
+    await userEvent.type(ecuador_goals, "{backspace}0")
     expect(screen.getByTestId('A-0')).toHaveTextContent('Senegal')
     expect(screen.getByTestId('A-1')).toHaveTextContent('Qatar')
     expect(screen.getByTestId('A-2')).toHaveTextContent('Países Bajos')
