@@ -1,4 +1,3 @@
-import React from 'react'
 import { Country } from '../domain/country'
 import PropTypes from 'prop-types'
 
@@ -13,5 +12,5 @@ export const CountryRow = ({ testId, country }) => {
 
 CountryRow.propTypes = {
     country: PropTypes.instanceOf(Country),
-    dataTestId: PropTypes.string,
+    testId: PropTypes.string,
 }
