@@ -2,7 +2,6 @@ import Card from '@mui/material/Card'
 import CardContent from '@mui/material/CardContent'
 import Grid from '@mui/material/Grid'
 import PropTypes from 'prop-types'
-import React from 'react'
 
 import { CountryRow } from './countryRow'
 

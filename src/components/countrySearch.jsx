@@ -1,7 +1,7 @@
 import FormControl from '@mui/material/FormControl'
 import FormHelperText from '@mui/material/FormHelperText'
 import TextField from '@mui/material/TextField'
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 
 import { Country } from '../domain/country'
 import { countryService } from '../services/countryService'
@@ -14,19 +14,16 @@ export const CountrySearch = () => {
   const [countries, setCountries] = useState([])
   const groups = countryService.getGroups()
 
-  useEffect(() => {
-    const searchCountries = () => {
-      setCountries(countryService.getCountries(search))
-    }
-
-    searchCountries()
-  }, [search])
+  const doSearch = (newSearch) => {
+    setSearch(newSearch)
+    setCountries(countryService.getCountries(newSearch))
+  }
 
   const handleChange = (value, property) => {
     const delta = search
     delta[property] = value
     const newSearch = Object.assign(new Country(), delta)
-    setSearch(newSearch)
+    doSearch(newSearch)
   }
 
   return (
