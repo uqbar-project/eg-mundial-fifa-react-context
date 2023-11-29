@@ -36,7 +36,7 @@ export class PositionItem {
     }
 
     processMatch(goalsOwn, goalsAgainst) {
-        // ojo, no va !goalsOwn
+        // ojo, no va !goalsOwn porque el 0 es falsy
         if (goalsOwn === undefined || goalsAgainst === undefined) return
         //
         this.goalsOwn += goalsOwn

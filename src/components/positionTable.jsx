@@ -107,5 +107,7 @@ export const PositionRow = ({ value, index, group }) => {
 }
 
 PositionRow.propTypes = {
-    value: PropTypes.instanceOf(PositionItem)
+    value: PropTypes.instanceOf(PositionItem),
+    index: PropTypes.number,
+    group: PropTypes.string,
 }
