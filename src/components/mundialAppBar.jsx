@@ -2,7 +2,6 @@ import EditIcon from '@mui/icons-material/Edit'
 import FlagIcon from '@mui/icons-material/Flag'
 import AppBar from '@mui/material/AppBar'
 import Toolbar from '@mui/material/Toolbar'
-import React from 'react'
 import { useNavigate } from 'react-router-dom'
 import { IconButton } from './iconButton'
 
