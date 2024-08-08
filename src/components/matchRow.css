@@ -1,0 +1,6 @@
+.matchRow {
+  display: grid;
+  grid-template-columns: 3fr 1fr 3fr 1fr;
+  gap: 10px;
+  margin: 0.75rem 0 0.25rem 0;
+}

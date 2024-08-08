@@ -1,5 +1,7 @@
 .App {
+  top: 0;
   text-align: center;
+  width: calc(100vw - 1rem);
 }
 
 .App-logo {
@@ -8,18 +10,14 @@
 }
 
 .App-header {
-  background-color: #f5f5f5;
   height: clamp(5rem, 4rem + 10vw, 10rem);
   padding: 0rem;
   color: white;
 }
 
-.App-title {
-  font-size: 1.5em;
-}
-
-.App-intro {
-  font-size: large;
+.separador {
+  border: 2px solid brown;
+  margin: 1rem 0;
 }
 
 .countryRow {

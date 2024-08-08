@@ -1,0 +1,17 @@
+.appbar {
+  height: 4rem;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  gap: 1rem;
+}
+
+.iconMenu {
+  height: 2rem;
+  width: 2rem;
+  margin: -0.5rem 0.5rem;
+}
+
+.labelMenu {
+  font-size: 1.5rem;
+}
