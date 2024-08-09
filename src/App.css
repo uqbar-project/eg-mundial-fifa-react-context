@@ -76,3 +76,10 @@
     border-radius: 0 !important;
   }
 }
+
+@media screen and (max-width: 424px) {
+  .appbar {
+    display: flex;
+    flex-direction: column;
+  }
+}

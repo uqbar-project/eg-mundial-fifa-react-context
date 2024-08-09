@@ -1,6 +1,6 @@
 # Mundial FIFA (React Context)
 
-[![Build React App](https://github.com/uqbar-project/eg-mundial-fifa-react-context/actions/workflows/build.yml/badge.svg?branch=master)](https://github.com/uqbar-project/eg-mundial-fifa-react-context/actions/workflows/build.yml) ![coverage](./badges/coverage/coverage.svg)
+[![Build React App](https://github.com/uqbar-project/eg-mundial-fifa-react-context/actions/workflows/build.yml/badge.svg?branch=master)](https://github.com/uqbar-project/eg-mundial-fifa-react-context/actions/workflows/build.yml) [![codecov](https://codecov.io/gh/uqbar-project/eg-mundial-fifa-react-context/graph/badge.svg?token=QJ2MJX1Y5B)](https://codecov.io/gh/uqbar-project/eg-mundial-fifa-react-context)
 
 <img src="video/demo.gif"/>
 
