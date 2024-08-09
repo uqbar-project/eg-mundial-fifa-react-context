@@ -20,21 +20,16 @@ describe('tests de app', () => {
     expect(allCountries[0].textContent).toBe('Francia')
   })
   
-  // Material UI tiene un select imposible de testear por ahora
-  // native = "true" permite ver las opciones pero deja de funcionar la app
-  // anteriormente podía buscarse a mano el botón, ahora fue reemplazado por un svg que está oculto
-  // incluso usando MenuItems no es posible encontrar opciones, solo utilizando <option> funciona
-  
-  // it('searching A group returns the corresponding countries', async () => {
-  //   render(<CountrySearch />)
-  //   const comboGroup = screen.getByTestId('group')
-  //   await userEvent.selectOptions(comboGroup, 'A')
+  test('searching A group returns the corresponding countries', async () => {
+    render(<CountrySearch />)
+    const comboGroup = screen.getByTestId('group')
+    await userEvent.selectOptions(comboGroup, 'A')
     
-  //   const allCountries = await screen.findAllByTestId('countryRow')
-  //   expect(allCountries.length).toBe(4)
-  //   const groupACountries = allCountries.map(country => country.textContent).sort((a, b) => a >= b)
-  //   expect(groupACountries).toStrictEqual(['Ecuador', 'Países Bajos', 'Qatar', 'Senegal'])
-  // })
+    const allCountries = await screen.findAllByTestId('countryRow')
+    expect(allCountries.length).toBe(4)
+    const groupACountries = allCountries.map(country => country.textContent).sort()
+    expect(groupACountries).toStrictEqual(['Ecuador', 'Países Bajos', 'Qatar', 'Senegal'])
+  })
   
   test('results show how many goals scored one of the teams', () => {
     render(

@@ -27,47 +27,48 @@ Es decir, tenemos un mapa:
 
 ![image](images/TablaPosiciones.png)
 
-Recorremos los partidos generando o actualizando el mapa por grupo y país (archivo _positionTable.js_):
+Recorremos los partidos generando o actualizando el mapa por grupo y país (archivo _positionTable.tsx_):
 
-```js
-const { matches } = useContext(Context)
-const positions = new Map()
-matches.filter((match) => match.matchesGroup(group)).forEach(match => {
+```ts
+export const PositionTable = ({ group }: { group: string }) => {
+  const { matches } = useContext(Context)!
+  const positions = new Map()
+  matches.filter((match) => match.matchesGroup(group)).forEach(match => {
     const group = match.group()
     const groupPosition = positions.get(group) || new GroupPosition(group)
     groupPosition.processMatch(match)
     positions.set(group, groupPosition)
-})
+  })
 ```
 
 El método processMatch de PositionGroup hace el procesamiento para el equipo local y el visitante:
 
-```js
-processMatch(match) {
-    this.searchPositionItem(match.teamA).processMatch(match.goalsA, match.goalsB)
-    this.searchPositionItem(match.teamB).processMatch(match.goalsB, match.goalsA)
+```ts
+processMatch(match: Match) {
+  this.searchPositionItem(match.teamA).processMatch(match.goalsA!, match.goalsB!)
+  this.searchPositionItem(match.teamB).processMatch(match.goalsB!, match.goalsA!)
 }
 
-searchPositionItem(team) {
-    let result = this.positionItems.find(item => item.team.matches(team))
-    if (!result) {
-        result = new PositionItem(team)
-        this.positionItems.push(result)
-    }
-    return result
+searchPositionItem(team: Country) {
+  let result = this.positionItems.find(item => item.team.matches(team))
+  if (!result) {
+    result = new PositionItem(team)
+    this.positionItems.push(result)
+  }
+  return result
 }
 ```
 
 Veamos el método processMatch del objeto de negocio positionItem, que representa una línea dentro de la tabla de posiciones:
 
-```js
-processMatch(goalsOwn, goalsAgainst) {
-    if (goalsOwn === undefined || goalsAgainst === undefined) return
-    this.goalsOwn += goalsOwn
-    this.goalsAgainst += goalsAgainst
-    if (goalsOwn > goalsAgainst) this.won++
-    if (goalsOwn < goalsAgainst) this.lost++
-    if (goalsOwn === goalsAgainst) this.tied++
+```ts
+processMatch(goalsOwn: number, goalsAgainst: number) {
+  if (goalsOwn === undefined || goalsAgainst === undefined) return
+  this.goalsOwn += goalsOwn
+  this.goalsAgainst += goalsAgainst
+  if (goalsOwn > goalsAgainst) this.won++
+  if (goalsOwn < goalsAgainst) this.lost++
+  if (goalsOwn === goalsAgainst) this.tied++
 }
 ```
 
@@ -75,36 +76,37 @@ processMatch(goalsOwn, goalsAgainst) {
 
 Para mostrar la tabla, el componente PositionTable (vista) en su método render dibuja la tabla de la siguiente manera:
 
-```js
+```tsx
 return (
-    <Card key={'cardPosiciones'}>
-        <CardContent key={'contentPosiciones'}>
-            <h3>Tabla de posiciones</h3>
-            {[...positions].map((itemGroup) => {
-                const group = itemGroup[0]
-                const positions = itemGroup[1].positions()
-                return <PositionGroupTable group={group} positions={positions} key={'positions_group_' + group} />
-            }
-            )}
-        </CardContent>
-    </Card>
+  <div key={'cardPosiciones'}>
+    <div className='cardPosicionesContent' key={'contentPosiciones'}>
+      <h2>Tabla de posiciones</h2>
+      {[...positions].map((itemGroup) => {
+        const group = itemGroup[0]
+        const positions = itemGroup[1].positions()
+        return <PositionGroupTable group={group} positions={positions} id={'positions_group_' + group} key={`position_${group}`} />
+      }
+      )}
+    </div>
+  </div>
 )
 ```
 
 Partimos de positions, que es el mapa que construimos previamente. Como el mapa de ECMAScript no conoce la función map, tenemos que pasarlo a una lista utilizando el _spread operator_ `[...positions]`. Esto nos da una lista de objetos que tiene `{grupo: nombre_grupo, groupPosition: lista_de_equipos}`. Pero como la lista de equipos no está ordenada, llamamos a un método en groupPosition que ordena los equipos por puntos:
 
-```js
+```ts
 // en GroupPosition
 positions() {
-    return this.positionItems.sort((a, b) => b.order - a.order)
+  return this.positionItems.sort((a, b) => b.order - a.order)
 }
 
->>PositionItem
-get order() {
-    return this.points * 10000 + this.goalAverage * 100 + this.goalsOwn
-}
+// PositionItem
 get points() {
-    return this.won * 3 + this.tied
+  return this.won * 3 + this.tied
+}
+
+get order() {
+  return this.points * 10000 + this.goalAverage * 100 + this.goalsOwn
 }
 ```
 
@@ -128,61 +130,63 @@ Veamos cómo se implementa dentro del ejemplo del mundial.
 
 El context va a guardar los resultados, inicialmente tendrá la lista de partidos vacía.
 
-Dentro de nuestro archivo _Context.js_, definimos nuestro `Provider` que va a tener el estado global de nuesta aplicación :
+Dentro de nuestro archivo _Context.tsx_, definimos nuestro `Provider` que va a tener el estado global de nuesta aplicación :
 
-```js
-export const Context = createContext()
+```tsx
+export const Context = createContext<MatchContext | null>(null)
 
-export const Provider = ({ children }) => {
-    const [matches, setMatches] = useState(new MatchService().getMatches())
-    const value = {
-        matches,
-        updateMatch: (matchToUpdate) => {
-            const indexMatchToReplace = matches.findIndex((match) => match.key === matchToUpdate.key)
-            matches[indexMatchToReplace] = matchToUpdate
-            setMatches([...matches])
-        }
+export const Provider = ({ children }: { children: ReactNode }) => {
+  const [matches, setMatches] = useState(new MatchService().getMatches())
+  const value = {
+    matches,
+    updateMatch: (matchToUpdate: Match) => {
+      const indexMatchToReplace = matches.findIndex((match) => match.key === matchToUpdate.key)
+      matches[indexMatchToReplace] = matchToUpdate
+      setMatches([...matches])
     }
-    return (
-        <Context.Provider value={value}>
-            {children}
-        </Context.Provider>
-    )
+  }
+  return (
+    <Context.Provider value={value}>
+      {children}
+    </Context.Provider>
+  )
 }
 ```
 
-Mediante los [hooks](https://es.reactjs.org/docs/hooks-intro.html)
+Mediante los [hooks](https://react.dev/reference/react-dom/hooks)
 
 - `useState` mantenemos el estado del contexto, que son los partidos disputados
 - `value` nos ofrece un mecanismo para mutar ese estado cada vez que nos pasen el partido a actualizar. Simplemente lo que hacemos es buscarlo en la lista de partidos, pisar el resultado del partido con el nuevo (ej. en lugar de Polonia 0 Arabia Saudita 0 podríamos decirle Polonia 1 Arabia Saudita 0) y luego debemos llamar al setMatches para que se propague ese cambio a cada uno de los hijos (en nuestro caso los que lo deben tomar son el de carga de partidos, para ver el input cambiado y la tabla de posiciones que se recalcula en base a los partidos)
 
-Para más información hay una [web](https://wattenberger.com/blog/react-hooks) que tiene una explicación de como migrar a hooks.
-
 Sabiendo esto ahora podemos conectar nuestro componente `Results` al contexto
 
-```js
-export const Results = ({ group }) => {
-    const { matches } = useContext(Context)
-    const groupMatches = matches.filter((match) => match.matchesGroup(group))
-    return (
-        <div>
-            {groupMatches.map(match => <MatchRow data-testid={match.key} match={match} key={match.key} />)}
-        </div>
+```tsx
+export const Results = ({ group }: { group: string }) => {
+  const { matches } = useContext(Context)!
+  const groupMatches = matches.filter((match) => match.matchesGroup(group))
+  return (
+    groupMatches.map(match =>
+      <div key={`container_${match.key}`} >
+        <MatchRow data-testid={match.key} match={match} key={match.key} />
+        <hr/>
+      </div>
     )
+  )
 }
 ```
 
 Y nuestro componente `MatchRow` ahora utiliza la función `updateMatch` del contexto para actualizar el partido y que el cambio se vea reflejado en la tabla de posiciones
 
-```js
-const MatchRow = ({ match }) => {
-    const { updateMatch } = useContext(Context)
+```tsx
+const MatchRow = ({ match }: { match: Match }) => {
+  const { updateMatch } = useContext(Context)!
 
-    const changeGoal = (team, goals) => {
-        match.updateScore(team.name, Math.trunc(goals))
-        updateMatch(match)
-    }
-    ...
+  const changeGoal = (team: Country, goals: number) => {
+    match.updateScore(team.name, Math.trunc(goals))
+    updateMatch(match)
+  }
+
+  ...
 ```
 
 ## Testing
@@ -192,22 +196,22 @@ Tenemos tres test bastante integrales, los dos primeros nos sirven para probar l
 - por letras
 - por grupo
 
-```js
-it('searching countries by text', async () => {
+```ts
+test('searching countries by text', async () => {
   render(<CountrySearch />)
   const countrySearch = screen.getByTestId('country')
   // bajo nivel fireEvent.change(countrySearch, { target: { value: 'F' }})
   // alto nivel
-  userEvent.type(countrySearch, 'F')
+  await userEvent.type(countrySearch, 'F')
   const allCountries = await screen.findAllByTestId('countryRow')
-  expect(allCountries[0]).toHaveTextContent('Francia')
+  expect(allCountries[0].textContent).toBe('Francia')
 })
 
-it('searching A group returns the corresponding countries', async () => {
+test('searching A group returns the corresponding countries', async () => {
   render(<CountrySearch />)
-  fireEvent.mouseDown(screen.getByRole('button'))
-  const listbox = within(screen.getByRole('listbox'))
-  fireEvent.click(listbox.getByText(/A/i))
+  const comboGroup = screen.getByTestId('group')
+  await userEvent.selectOptions(comboGroup, 'A')
+  
   const allCountries = await screen.findAllByTestId('countryRow')
   expect(allCountries.length).toBe(4)
   const groupACountries = allCountries.map(country => country.textContent).sort((a, b) => a >= b)
@@ -232,30 +236,14 @@ Por último el test que verifica la carga de un resultado requiere ser específi
 
 eso nos permite accederlo rápidamente
 
-```js
-it('results show how many goals scored one of the teams', () => {
+```tsx
+test('results show how many goals scored one of the teams', () => {
   render(
     <Provider>
-      <Results />
+      <Results group='' />
     </Provider >
   )
-  const goalsHomeTeam = screen.getByTestId('qatar_ecuador_qatar_goles')
-  expect(goalsHomeTeam).toHaveValue(1)
+  const goalsHomeTeam = screen.getByTestId('qatar_ecuador_qatar_goles') as HTMLInputElement
+  expect(goalsHomeTeam.value).toBe('1')
 })
-```
-
-Otro truco importante es que debemos pasarle a Material el data-testid como una `input-prop`:
-
-```js
-<TextField
-    required
-    inputProps={{ 'data-testid': `${match.key}_${team.key}_goles` }}
-```
-
-ya que así no funciona
-
-```js
-<TextField
-    required
-    data-testid={`${match.key}_${team.key}_goles`}
 ```
