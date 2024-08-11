@@ -4,3 +4,19 @@
   gap: 10px;
   margin: 0.75rem 0 0.25rem 0;
 }
+
+@media (max-width: 424px) {
+  .matchRow {
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+  }
+
+  .countryRow {
+    font-size: 0.8rem;
+  }
+
+  .matchRow .countryRow img {
+    height: 0.9rem;
+    width: 1.5rem;
+    margin: 0.3rem 0.3rem 0 0;
+  }
+}

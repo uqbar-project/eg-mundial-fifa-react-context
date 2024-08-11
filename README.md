@@ -2,7 +2,13 @@
 
 [![Build React App](https://github.com/uqbar-project/eg-mundial-fifa-react-context/actions/workflows/build.yml/badge.svg?branch=master)](https://github.com/uqbar-project/eg-mundial-fifa-react-context/actions/workflows/build.yml) [![codecov](https://codecov.io/gh/uqbar-project/eg-mundial-fifa-react-context/graph/badge.svg?token=QJ2MJX1Y5B)](https://codecov.io/gh/uqbar-project/eg-mundial-fifa-react-context)
 
-<img src="video/demo.gif"/>
+<img src="video/demo1.gif"/>
+
+<hr/>
+
+<img src="video/demo2.gif">
+
+<hr/>
 
 La aplicación permite la reutilización de varios componentes:
 

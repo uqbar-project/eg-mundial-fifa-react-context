@@ -7,3 +7,9 @@
 .countryRowContainer {
   margin: 1rem 0;
 }
+
+@media (max-width: 424px) {
+  .countryList {
+    grid-template-columns: 1fr 1fr;
+  }
+}

@@ -9,9 +9,38 @@
 .iconMenu {
   height: 2rem;
   width: 2rem;
-  margin: -0.5rem 0.5rem;
 }
 
 .labelMenu {
-  font-size: 1.5rem;
+  font-size: 1.3rem;
+}
+
+.mobile {
+  display: none;
+  visibility: hidden;
+}
+
+.desktop {
+  visibility: visible;
+  display: block;
+}
+
+@media (max-width: 424px) {
+  .App {
+    margin-left: 0.5rem;
+  }
+
+  .labelMenu {
+    font-size: 1rem;
+  }
+
+  .mobile {
+    visibility: visible;
+    display: block;
+  }
+
+  .desktop {
+    display: none;
+    visibility: hidden;
+  }
 }
