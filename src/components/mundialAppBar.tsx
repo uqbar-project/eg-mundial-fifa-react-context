@@ -18,5 +18,5 @@ export const MundialAppBar = () => {
         <label className="labelMenu mobile">Resultados</label>
       </button>
     </div>
-  )
+    )
 }

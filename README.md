@@ -142,7 +142,7 @@ Dentro de nuestro archivo _Context.tsx_, definimos nuestro `Provider` que va a t
 export const Context = createContext<MatchContext | null>(null)
 
 export const Provider = ({ children }: { children: ReactNode }) => {
-  const [matches, setMatches] = useState(new MatchService().getMatches())
+  const [matches, setMatches] = useState(matchService.getMatches())
   const value = {
     matches,
     updateMatch: (matchToUpdate: Match) => {

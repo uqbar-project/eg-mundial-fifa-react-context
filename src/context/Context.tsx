@@ -1,6 +1,6 @@
 import { createContext, ReactNode, useState } from 'react'
 import { Match } from 'src/domain/match'
-import { MatchService } from 'src/services/matchService'
+import { matchService } from 'src/services/matchService'
 
 export type MatchContext = {
   matches: Match[],
@@ -10,7 +10,7 @@ export type MatchContext = {
 export const Context = createContext<MatchContext | null>(null)
 
 export const Provider = ({ children }: { children: ReactNode }) => {
-  const [matches, setMatches] = useState(new MatchService().getMatches())
+  const [matches, setMatches] = useState(matchService.getMatches())
   const value = {
     matches,
     updateMatch: (matchToUpdate: Match) => {
