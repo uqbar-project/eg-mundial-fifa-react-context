@@ -13,7 +13,7 @@
 }
 
 .labelMenu {
-  font-size: 1.3rem;
+  font-size: 1.2rem;
 }
 
 .mobile {
@@ -24,6 +24,15 @@
 .desktop {
   visibility: visible;
   display: block;
+}
+
+.buttonMenu {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: rgb(240, 185, 185);
+  padding: 2.5rem 1rem;
 }
 
 @media (max-width: 424px) {

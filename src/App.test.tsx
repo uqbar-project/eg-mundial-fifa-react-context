@@ -6,7 +6,7 @@ import App from './App'
 import { CountrySearch } from './components/countrySearch'
 import { MundialAppBar } from './components/mundialAppBar'
 import { Results } from './components/results'
-import { Provider } from './context/Context'
+import { Provider } from './context/Provider'
 
 describe('tests de app', () => {
 

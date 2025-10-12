@@ -48,7 +48,7 @@ button {
   transition: border-color 0.25s;
 }
 button:hover {
-  background-color: bisque;
+  background-color: rgb(246, 162, 162);
   height: 6rem;
 }
 

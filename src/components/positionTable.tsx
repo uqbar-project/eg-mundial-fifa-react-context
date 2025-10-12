@@ -6,8 +6,6 @@ import { Context } from '../context/Context'
 import { GroupPosition, PositionItem } from '../domain/groupPosition'
 import { CountryRow } from './countryRow'
 
-import { isEmpty } from 'lodash'
-
 export const PositionTable = ({ group }: { group: string }) => {
   const { matches } = useContext(Context)!
   const positions = new Map()
@@ -18,7 +16,7 @@ export const PositionTable = ({ group }: { group: string }) => {
     positions.set(group, groupPosition)
   })
 
-  if (isEmpty(positions)) {
+  if (positions.size === 0) {
     return <></>
   }
 

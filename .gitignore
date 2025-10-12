@@ -23,5 +23,8 @@ dist-ssr
 *.sln
 *.sw?
 
-# Historial
+# VSC - Git Lens
 .history
+
+# Coverage report
+coverage

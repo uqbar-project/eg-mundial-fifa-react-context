@@ -1,5 +1,5 @@
-import { Country } from "./country"
-import { Match } from "./match"
+import { Country } from './country'
+import { Match } from './match'
 
 export class GroupPosition {
 

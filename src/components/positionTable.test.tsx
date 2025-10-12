@@ -1,12 +1,12 @@
 import { render, screen } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
-import { Provider } from '../context/Context'
+import { Provider } from '../context/Provider'
 import { PositionTable } from './positionTable'
 import Fixture from './fixture'
 import { describe, expect, test } from 'vitest'
 
-describe("position table", () => {
-  test("position table is correctly generated", () => {
+describe('position table', () => {
+  test('position table is correctly generated', () => {
     render(
       <Provider>
         <PositionTable group='A' />
@@ -25,7 +25,7 @@ describe("position table", () => {
       </Provider >
     )
     const ecuador_goals = screen.getByTestId('qatar_ecuador_ecuador_goles')
-    await userEvent.type(ecuador_goals, "{backspace}0")
+    await userEvent.type(ecuador_goals, '{backspace}0')
     expect(screen.getByTestId('A-0').textContent).toBe('Senegal')
     expect(screen.getByTestId('A-1').textContent).toBe('Qatar')
     expect(screen.getByTestId('A-2').textContent).toBe('Países Bajos')

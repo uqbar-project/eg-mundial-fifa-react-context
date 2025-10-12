@@ -1,4 +1,4 @@
-import { Country } from "./country"
+import { Country } from './country'
 
 export class Match {
 
@@ -24,7 +24,7 @@ export class Match {
   }
 
   get key() {
-    return this.teamA.key + "_" + this.teamB.key
+    return this.teamA.key + '_' + this.teamB.key
   }
 
   group() {

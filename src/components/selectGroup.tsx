@@ -1,4 +1,4 @@
-import { ChangeEventHandler } from "react"
+import { ChangeEventHandler } from 'react'
 
 export const SelectGroup = ({ value, onChange, groups }: { value: string, onChange: ChangeEventHandler<HTMLSelectElement>, groups: string[]}) => {
     return <>

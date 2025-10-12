@@ -3,7 +3,7 @@ import './App.css'
 import { Component } from 'react'
 import { BrowserRouter } from 'react-router-dom'
 
-import { Provider } from './context/Context'
+import { Provider } from './context/Provider'
 import logo from './assets/logoQatar.png'
 import { MundialRoutes } from './routes'
 

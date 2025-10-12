@@ -34,7 +34,7 @@ const MatchTeam = ({ match, team, goal, changeGoal }: { match: Match, team: Coun
         data-testid={`${match.key}_${team.key}_goles`}
         type="number"
         className="goles"
-        value={goal}
+        value={goal ?? ''}
         onChange={(event) => changeGoal(team, +event.target.value)}
       />
     </>

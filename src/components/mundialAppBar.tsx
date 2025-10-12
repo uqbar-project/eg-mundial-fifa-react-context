@@ -7,15 +7,15 @@ export const MundialAppBar = () => {
 
   return (
     <div className='appbar'>
-      <button onClick={() => navigate('/')}>
+      <button onClick={() => navigate('/')} className='buttonMenu'>
         <img className="iconMenu" src="/src/assets/search.png" />
-        <label className="labelMenu desktop">Buscá los países</label>
-        <label className="labelMenu mobile">Países</label>
+        <span className="labelMenu desktop">Buscá los países</span>
+        <span className="labelMenu mobile">Países</span>
       </button>
-      <button onClick={() => navigate('/fixture')}>
+      <button onClick={() => navigate('/fixture')} className='buttonMenu'>
         <img className="iconMenu" src="/src/assets/ranking.png" />
-        <label className="labelMenu desktop">¡Cargá los resultados y mirá las posiciones!</label>
-        <label className="labelMenu mobile">Resultados</label>
+        <span className="labelMenu desktop">¡Cargá los resultados y mirá las posiciones!</span>
+        {/* <label className="labelMenu mobile">Resultados</label> */}
       </button>
     </div>
     )
