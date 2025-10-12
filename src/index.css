@@ -1,5 +1,6 @@
 * {
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  font-family: Manrope, system-ui;
+  font-optical-sizing: auto;
 }
 
 :root {
