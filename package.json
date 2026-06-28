@@ -4,12 +4,11 @@
   "version": "0.0.0",
   "type": "module",
   "engines": {
-    "pnpm": ">=10.0.0"
+    "pnpm": "^10.0.0"
   },
   "pnpm": {
     "onlyBuiltDependencies": [
-      "@swc/core",
-      "full-icu"
+      "@swc/core"
     ]
   },
   "scripts": {
@@ -24,7 +23,6 @@
     "clean": "rm -rf dist node_modules coverage"
   },
   "dependencies": {
-    "full-icu": "1.5.0",
     "react": "19.0.0",
     "react-dom": "19.0.0",
     "react-router-dom": "7.9.4"

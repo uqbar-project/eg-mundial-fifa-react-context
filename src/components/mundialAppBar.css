@@ -46,6 +46,11 @@
   height: auto;
 }
 
+.buttonMenu.active, .buttonMenu[aria-current='page'] {
+  background-color: #93c5fd;
+  box-shadow: 0 0 0 2px rgba(37, 99, 235, 0.25);
+}
+
 @media (prefers-color-scheme: dark) {
   .buttonMenu {
     background-color: #1e3a5f;
@@ -56,6 +61,11 @@
     box-shadow: 0 4px 12px rgba(96, 165, 250, 0.3);
     background-color: #2a4f7a;
     height: auto;
+  }
+
+  .buttonMenu.active, .buttonMenu[aria-current='page'] {
+    background-color: #2a4f7a;
+    box-shadow: 0 0 0 2px rgba(96, 165, 250, 0.35);
   }
 }
 
