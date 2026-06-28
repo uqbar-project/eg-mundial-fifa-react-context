@@ -39,6 +39,10 @@ export class Match {
     return !group || this.group().includes(group)
   }
 
+  clone() {
+    return new Match(this.teamA, this.goalsA, this.teamB, this.goalsB)
+  }
+
   updateScore(teamName: string, goals: number) {
     if (this.teamA.name === teamName) {
       this.goalsA = goals
