@@ -12,19 +12,16 @@ export const PositionTable = ({ group }: { group: string }) => {
     return null
   }
   const { matches } = context
-  const positions = new Map()
+  const positions = new Map<string, GroupPosition>()
   matches
     .filter((match) => match.matchesGroup(group))
     .forEach((match) => {
-      const group = match.group()
-      const groupPosition = positions.get(group) || new GroupPosition(group)
+      const groupKey = match.group()
+      const groupPosition =
+        positions.get(groupKey) || new GroupPosition(groupKey)
       groupPosition.processMatch(match)
-      positions.set(group, groupPosition)
+      positions.set(groupKey, groupPosition)
     })
-
-  if (positions.size === 0) {
-    return null
-  }
 
   return (
     <div key={'cardPosiciones'}>

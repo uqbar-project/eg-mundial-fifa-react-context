@@ -1,56 +1,74 @@
 .appbar {
-  height: 4rem;
   display: flex;
   flex-direction: row;
   justify-content: center;
   gap: 1rem;
-  margin: 0 0 2rem 0;
+  margin: 0 0 2rem;
 }
 
 .iconMenu {
-  height: 2rem;
-  width: 2rem;
+  height: 1.5rem;
+  width: 1.5rem;
 }
 
 .labelMenu {
-  font-size: 1.2rem;
+  font-size: 1rem;
 }
 
 .mobile {
   display: none;
-  visibility: hidden;
 }
 
 .desktop {
-  visibility: visible;
   display: block;
 }
 
 .buttonMenu {
   display: flex;
-  flex-direction: column;
-  justify-content: center;
+  flex-direction: row;
   align-items: center;
-  background-color: rgb(240, 185, 185);
-  padding: 2.5rem 1rem;
+  gap: 0.5rem;
+  padding: 0.75rem 1.25rem;
+  border-radius: 0.75rem;
+  background-color: #dbeafe;
+  color: inherit;
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease,
+    background-color 0.2s ease;
+  height: auto;
+}
+
+.buttonMenu:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(37, 99, 235, 0.2);
+  background-color: #bfdbfe;
+  height: auto;
+}
+
+@media (prefers-color-scheme: dark) {
+  .buttonMenu {
+    background-color: #1e3a5f;
+  }
+
+  .buttonMenu:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(96, 165, 250, 0.3);
+    background-color: #2a4f7a;
+    height: auto;
+  }
 }
 
 @media (max-width: 424px) {
-  .App {
-    margin-left: 0.5rem;
-  }
-
   .labelMenu {
-    font-size: 1rem;
+    font-size: 0.875rem;
   }
 
   .mobile {
-    visibility: visible;
     display: block;
   }
 
   .desktop {
     display: none;
-    visibility: hidden;
   }
 }

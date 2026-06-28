@@ -8,9 +8,6 @@ export class GroupPosition {
   ) {}
 
   processMatch(match: Match) {
-    if (match.goalsA === undefined || match.goalsB === undefined) {
-      return
-    }
     this.searchPositionItem(match.teamA).processMatch(
       match.goalsA,
       match.goalsB
@@ -31,7 +28,13 @@ export class GroupPosition {
   }
 
   positions() {
-    return this.positionItems.sort((a, b) => b.order - a.order)
+    return this.positionItems.sort((itemA, itemB) => {
+      const orderDiff = itemB.order - itemA.order
+      if (orderDiff !== 0) {
+        return orderDiff
+      }
+      return itemA.team.name.localeCompare(itemB.team.name)
+    })
   }
 }
 
@@ -45,7 +48,7 @@ export class PositionItem {
     public goalsAgainst = 0
   ) {}
 
-  processMatch(goalsOwn: number, goalsAgainst: number) {
+  processMatch(goalsOwn: number | undefined, goalsAgainst: number | undefined) {
     // ojo, no va !goalsOwn porque el 0 es falsy
     if (goalsOwn === undefined || goalsAgainst === undefined) {
       return
