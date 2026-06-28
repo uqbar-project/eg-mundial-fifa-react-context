@@ -36,21 +36,26 @@ const countries = [
 ]
 
 class CountryService {
-
-  getAllCountries() { return countries }
+  getAllCountries() {
+    return countries
+  }
 
   getCountries(countrySearch: Country) {
-    return countries.filter(country => country.matches(countrySearch))
+    return countries.filter((country) => country.matches(countrySearch))
   }
 
   getCountry(name: string) {
-    const country = countries.find(country => country.name.toLowerCase() === name.toLowerCase())
-    if (!country) throw new Error(`Equipo ${name} no encontrado`)
+    const country = countries.find(
+      (country) => country.name.toLowerCase() === name.toLowerCase()
+    )
+    if (!country) {
+      throw new Error(`Equipo ${name} no encontrado`)
+    }
     return country
   }
 
   getGroups() {
-    const groups = countries.map(country => country.group)
+    const groups = countries.map((country) => country.group)
     return [...new Set(groups)].sort()
   }
 }

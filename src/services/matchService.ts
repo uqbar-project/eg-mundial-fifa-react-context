@@ -2,7 +2,6 @@ import { Match } from '../domain/match'
 import { countryService } from './countryService'
 
 class MatchService {
-
   build(teamA: string, teamB: string, goalA?: number, goalB?: number) {
     return new Match(this.getTeam(teamA), goalA, this.getTeam(teamB), goalB)
   }
@@ -14,7 +13,6 @@ class MatchService {
   getMatches() {
     return matches
   }
-
 }
 
 export const matchService = new MatchService()
@@ -67,5 +65,5 @@ const matches = [
   matchService.build('Corea del Sur', 'Ghana'),
   matchService.build('Portugal', 'Uruguay'),
   matchService.build('Ghana', 'Uruguay'),
-  matchService.build('Corea del Sur', 'Portugal')
+  matchService.build('Corea del Sur', 'Portugal'),
 ]

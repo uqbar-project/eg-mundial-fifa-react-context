@@ -1,7 +1,7 @@
-import { describe, test, expect } from 'vitest'
 import { render, screen } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 import { BrowserRouter } from 'react-router-dom'
+import { describe, expect, test } from 'vitest'
 import App from './App'
 import { CountrySearch } from './components/countrySearch'
 import { MundialAppBar } from './components/mundialAppBar'
@@ -9,7 +9,6 @@ import { Results } from './components/results'
 import { Provider } from './context/Provider'
 
 describe('tests de app', () => {
-
   test('searching countries by text', async () => {
     render(<CountrySearch />)
     const countrySearch = screen.getByTestId('country')
@@ -19,36 +18,52 @@ describe('tests de app', () => {
     const allCountries = await screen.findAllByTestId('countryRow')
     expect(allCountries[0].textContent).toBe('Francia')
   })
-  
+
   test('searching A group returns the corresponding countries', async () => {
     render(<CountrySearch />)
     const comboGroup = screen.getByTestId('group')
     await userEvent.selectOptions(comboGroup, 'A')
-    
+
     const allCountries = await screen.findAllByTestId('countryRow')
     expect(allCountries.length).toBe(4)
-    const groupACountries = allCountries.map(country => country.textContent).sort()
-    expect(groupACountries).toStrictEqual(['Ecuador', 'Países Bajos', 'Qatar', 'Senegal'])
+    const groupACountries = allCountries
+      .map((country) => country.textContent)
+      .sort()
+    expect(groupACountries).toStrictEqual([
+      'Ecuador',
+      'Países Bajos',
+      'Qatar',
+      'Senegal',
+    ])
   })
-  
+
   test('results show how many goals scored one of the teams', () => {
     render(
       <Provider>
-        <Results group='' />
-      </Provider >
+        <Results group="" />
+      </Provider>
     )
-    const goalsHomeTeam = screen.getByTestId('qatar_ecuador_qatar_goles') as HTMLInputElement
+    const goalsHomeTeam = screen.getByTestId(
+      'qatar_ecuador_qatar_goles'
+    ) as HTMLInputElement
     expect(goalsHomeTeam.value).toBe('1')
   })
-  
+
   test('has a smoke test for App', () => {
-    render(<Provider><App/></Provider>)
+    render(
+      <Provider>
+        <App />
+      </Provider>
+    )
     expect(screen.getByTestId('app')).toBeTruthy()
   })
-  
+
   test('AppBar has two routes', () => {
-    render(<BrowserRouter><MundialAppBar/></BrowserRouter>)
+    render(
+      <BrowserRouter>
+        <MundialAppBar />
+      </BrowserRouter>
+    )
     expect(screen.getAllByRole('button').length).toBe(2)
   })
-
 })

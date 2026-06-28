@@ -1,6 +1,6 @@
 import './countrySearch.css'
 
-import { ChangeEvent, useState } from 'react'
+import { type ChangeEvent, useState } from 'react'
 
 import { Country } from '../domain/country'
 import { countryService } from '../services/countryService'
@@ -8,7 +8,6 @@ import { CountryList } from './countryList'
 import { SelectGroup } from './selectGroup'
 
 export const CountrySearch = () => {
-
   const [search, setSearch] = useState(new Country())
   const [countries, setCountries] = useState<Country[]>([])
   const groups = countryService.getGroups()
@@ -29,8 +28,10 @@ export const CountrySearch = () => {
     <div>
       <div className="search">
         <div className="formControl">
-          <label>País</label>
-          <input type="text"
+          <label htmlFor="country">País</label>
+          <input
+            type="text"
+            id="country"
             data-testid="country"
             value={search.name}
             onChange={(event) => handleChange(event.target.value, 'name')}
@@ -39,7 +40,9 @@ export const CountrySearch = () => {
         <div className="formControl">
           <SelectGroup
             value={search.group}
-            onChange={(event: ChangeEvent) => handleChange((event.target as HTMLSelectElement).value, 'group')}
+            onChange={(event: ChangeEvent) =>
+              handleChange((event.target as HTMLSelectElement).value, 'group')
+            }
             groups={groups}
           />
         </div>
@@ -47,5 +50,4 @@ export const CountrySearch = () => {
       <CountryList countries={countries} />
     </div>
   )
-
 }

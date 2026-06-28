@@ -1,16 +1,16 @@
 import { render, screen } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
-import { Provider } from '../context/Provider'
-import { PositionTable } from './positionTable'
-import Fixture from './fixture'
 import { describe, expect, test } from 'vitest'
+import { Provider } from '../context/Provider'
+import Fixture from './fixture'
+import { PositionTable } from './positionTable'
 
 describe('position table', () => {
   test('position table is correctly generated', () => {
     render(
       <Provider>
-        <PositionTable group='A' />
-      </Provider >
+        <PositionTable group="A" />
+      </Provider>
     )
     expect(screen.getByTestId('A-0').textContent).toBe('Ecuador')
     expect(screen.getByTestId('A-1').textContent).toBe('Senegal')
@@ -22,7 +22,7 @@ describe('position table', () => {
     render(
       <Provider>
         <Fixture />
-      </Provider >
+      </Provider>
     )
     const ecuador_goals = screen.getByTestId('qatar_ecuador_ecuador_goles')
     await userEvent.type(ecuador_goals, '{backspace}0')
