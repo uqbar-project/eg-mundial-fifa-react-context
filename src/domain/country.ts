@@ -1,9 +1,11 @@
 export class Country {
-  constructor(public name = '', public group = '') {
-  }
+  constructor(
+    public name = '',
+    public group = ''
+  ) {}
 
   get flag() {
-    return this.key + '.png'
+    return `${this.key}.png`
   }
 
   get key() {
@@ -16,6 +18,8 @@ export class Country {
   }
 
   match(property: keyof Country, other: Country): boolean {
-    return (this[property] as unknown as string).toLowerCase().includes((other[property] as unknown as string).toLowerCase())
+    return (this[property] as unknown as string)
+      .toLowerCase()
+      .includes((other[property] as unknown as string).toLowerCase())
   }
 }

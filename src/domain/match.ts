@@ -1,13 +1,17 @@
-import { Country } from './country'
+import type { Country } from './country'
 
 export class Match {
-
   teamA: Country
   goalsA: number | undefined
   teamB: Country
   goalsB: number | undefined
 
-  constructor(teamA: Country, goalsA: number | undefined, teamB: Country, goalsB: number | undefined) {
+  constructor(
+    teamA: Country,
+    goalsA: number | undefined,
+    teamB: Country,
+    goalsB: number | undefined
+  ) {
     if (!teamA) {
       throw new Error('Debe ingresar el primer equipo')
     }
@@ -24,7 +28,7 @@ export class Match {
   }
 
   get key() {
-    return this.teamA.key + '_' + this.teamB.key
+    return `${this.teamA.key}_${this.teamB.key}`
   }
 
   group() {
@@ -33,6 +37,10 @@ export class Match {
 
   matchesGroup(group: string) {
     return !group || this.group().includes(group)
+  }
+
+  clone() {
+    return new Match(this.teamA, this.goalsA, this.teamB, this.goalsB)
   }
 
   updateScore(teamName: string, goals: number) {

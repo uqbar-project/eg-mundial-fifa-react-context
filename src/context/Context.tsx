@@ -1,9 +1,9 @@
 import { createContext } from 'react'
-import { Match } from 'src/domain/match'
+import type { Match } from '../domain/match'
 
 export type MatchContext = {
-  matches: Match[],
-  updateMatch: (matchToUpdate: Match) => void,
+  matches: Match[]
+  updateMatch: (matchToUpdate: Match) => void
 }
 
 export const Context = createContext<MatchContext | null>(null)

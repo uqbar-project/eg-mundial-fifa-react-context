@@ -49,7 +49,7 @@
 }
 
 .cardPosicionesContent {
-  padding: clamp(0.5rem, 1vw, 1rem) !important;
+  padding: clamp(0.5rem, 1vw, 1rem);
 }
 
 @media screen and (max-width: 1024px) {
@@ -73,7 +73,7 @@
   }
 
   .countryRowContainer {
-    border-radius: 0 !important;
+    border-radius: 0;
   }
 }
 

@@ -2,9 +2,8 @@ import './App.css'
 
 import { Component } from 'react'
 import { BrowserRouter } from 'react-router-dom'
-
-import { Provider } from './context/Provider'
 import logo from './assets/logoQatar.png'
+import { Provider } from './context/Provider'
 import { MundialRoutes } from './routes'
 
 class App extends Component {
@@ -16,7 +15,7 @@ class App extends Component {
             <header className="App-header">
               <img src={logo} className="App-logo" alt="logo" />
             </header>
-            <hr className="separador"/>
+            <hr className="separador" />
             <MundialRoutes />
           </div>
         </BrowserRouter>
